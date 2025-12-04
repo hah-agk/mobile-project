@@ -25,40 +25,40 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <!-- Main Layout -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="24dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <!-- App Icon -->
-            <ImageView
-                android:id="@+id/appIcon"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@mipmap/ic_launcher_round"
-                android:contentDescription="App Icon"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+        <!-- App Icon -->
+        <ImageView
+            android:id="@+id/appIcon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="App Icon"
+            android:src="@mipmap/ic_launcher_round"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Username Input Layout -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/usernameLayout"
-                android:layout_width="0dp"
+        <!-- Username Input Layout -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/usernameLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:hint="Username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appIcon">
+
+            <EditText
+                android:id="@+id/usernameInput"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Username"
-                app:layout_constraintTop_toBottomOf="@id/appIcon"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="32dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/usernameInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text" />
+                android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Password Input Layout -->
@@ -66,14 +66,14 @@
                 android:id="@+id/passwordLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:hint="Password"
                 app:endIconMode="password_toggle"
-                app:layout_constraintTop_toBottomOf="@id/usernameLayout"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="16dp">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/usernameLayout">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/passwordInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -81,19 +81,19 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Login Button -->
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/loginButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Login"
                 android:layout_marginTop="32dp"
-                app:cornerRadius="12dp"
-                android:textSize="16sp"
                 android:padding="12dp"
-                app:layout_constraintTop_toBottomOf="@id/passwordLayout"
+                android:text="Login"
+                android:textSize="16sp"
+                app:cornerRadius="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/passwordLayout" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
