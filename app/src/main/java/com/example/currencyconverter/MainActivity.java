@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         final String correctUsername = "admin";
         final String correctPassword = "1234";
+        EditText b;
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
