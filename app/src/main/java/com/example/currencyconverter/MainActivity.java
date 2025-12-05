@@ -16,7 +16,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText a ;
     EditText usernameInput, passwordInput;
     Button loginButton;
 
@@ -37,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
         final String correctUsername = "admin";
         final String correctPassword = "1234";
-        EditText b;
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
