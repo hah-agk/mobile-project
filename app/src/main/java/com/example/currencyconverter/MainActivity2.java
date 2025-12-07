@@ -37,7 +37,7 @@ public class MainActivity2 extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             binding = ActivityMain2Binding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());
-            replaceFragment(new HomeFragment());
+            replaceFragment(new ProfileFragment());
 
             binding.bottomNavigationBar.setOnItemSelectedListener(
                     new NavigationBarView.OnItemSelectedListener() {
@@ -46,11 +46,11 @@ public class MainActivity2 extends AppCompatActivity {
 
                             int id = item.getItemId();
 
-                            if (id == R.id.home) {
-                                replaceFragment(new HomeFragment());
-                                return true;
-                            } else if (id == R.id.profile) {
+                            if (id == R.id.profile) {
                                 replaceFragment(new ProfileFragment());
+                                return true;
+                            } else if (id == R.id.home) {
+                                replaceFragment(new HomeFragment());
                                 return true;
                             } else if (id == R.id.chat) {
                                 replaceFragment(new ChatFragment());

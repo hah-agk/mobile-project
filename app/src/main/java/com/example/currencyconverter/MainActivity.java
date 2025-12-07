@@ -54,18 +54,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,
                             "Login Successful!", Toast.LENGTH_SHORT).show();
 
-                    SharedPreferences prefs = getSharedPreferences("userData", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putString("username", user);
-                    editor.putString("email", "example@gmail.com");
-                    editor.putString("country", "Lebanon");
-                    editor.apply();
-
                     // Navigate to home page
                     Intent intent = new Intent(MainActivity.this, MainActivity2.class);
-                    intent.putExtra("username", user);
-                    intent.putExtra("email", "example@gmail.com");
-                    intent.putExtra("country", "Lebanon");
                     startActivity(intent);
                     finish(); // prevents going back to login
                 } else {
