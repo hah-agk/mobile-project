@@ -85,6 +85,7 @@
                 android:textColor="@color/black"/>
 
             <ImageButton
+                android:id="@+id/btnSignup"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_gravity="end"

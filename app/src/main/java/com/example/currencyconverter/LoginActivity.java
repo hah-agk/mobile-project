@@ -1,7 +1,11 @@
 package com.example.currencyconverter;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,11 +18,28 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class LoginActivity extends AppCompatActivity {
 
     EditText emailEt, passwordEt;
     ImageButton loginBtn;
     Button registerBtn;
+    FirebaseAuth fAuth;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+        if (auth.getCurrentUser() != null) {
+            // User already logged in
+            startActivity(new Intent(this, MainActivity2.class));
+            finish(); // IMPORTANT
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,35 +57,31 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginbutton);
         registerBtn = findViewById(R.id.toregisteractivity);
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = emailEt.getText().toString().trim();
-                String password = passwordEt.getText().toString().trim();
-
-                // Check empty fields
-                if (email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(LoginActivity.this,
-                            "Please fill all the fields",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                // Hard-coded login (later replaced by SQLite)
-                String correctEmail = "test@gmail.com";
-                String correctPassword = "123456";
-
-                if (email.equals(correctEmail) && password.equals(correctPassword)) {
-                    // Go to Main Activity
-                    Intent intent = new Intent(LoginActivity.this, MainActivity2.class);
-                    startActivity(intent);
+        fAuth = FirebaseAuth.getInstance();
+        loginBtn.setOnClickListener(v -> {
+            String email = emailEt.getText().toString().trim();
+            String password = passwordEt.getText().toString().trim();
+            if (TextUtils.isEmpty(email)) {
+                emailEt.setError("Email required");
+                return;
+            }
+            if (TextUtils.isEmpty(password)) {
+                passwordEt.setError("Password required");
+                return;
+            }
+            if (password.length()<6) {
+                passwordEt.setError("Password must be greater than 6 characters");
+                return;
+            }
+            fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(LoginActivity.this, "Logged in Successfully", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(LoginActivity.this, MainActivity2.class));
                     finish();
                 } else {
-                    Toast.makeText(LoginActivity.this,
-                            "Wrong email or password",
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "ERROR " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
-            }
+            });
         });
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +91,5 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
-}
+    }
