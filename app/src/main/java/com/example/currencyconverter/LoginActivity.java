@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         if (auth.getCurrentUser() != null) {
             // User already logged in
             startActivity(new Intent(this, MainActivity2.class));
-            finish(); // IMPORTANT
+            finish();
         }
     }
 
