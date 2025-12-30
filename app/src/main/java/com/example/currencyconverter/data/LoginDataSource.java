@@ -1,7 +1,5 @@
 package com.example.currencyconverter.data;
 
-import com.example.currencyconverter.data.model.LoggedInUser;
-
 import java.io.IOException;
 
 /**
